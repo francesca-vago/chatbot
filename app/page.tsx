@@ -1,7 +1,6 @@
 'use client';
 
 import AIChatButton from '@/components/AIChat/AIChatButton';
-import { Button } from '@/components/ui/button';
 
 export default function Chat() {
   return (

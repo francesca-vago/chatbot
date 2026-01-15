@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import AIChatMessage from "./AIChatMessage";
+import { SendHorizontal } from "lucide-react";
 
 interface AIChatBoxProps {
 	open: boolean;
@@ -22,6 +23,7 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
 			))}
 
 			<form
+				className="flex gap-2"
 				onSubmit={e => {
 					e.preventDefault();
 					sendMessage({ text: input });
@@ -29,12 +31,21 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
 				}}
 			>
 				<Textarea
-					className="resize-none"
+					className="cn-textarea placeholder:text-muted-foreground flex flex-grow field-sizing-content min-h-16 w-full outline-none disabled:cursor-not-allowed disabled:opacity-50 cn-input-group-textarea flex-1 resize-none"
 					value={input}
 					placeholder="Ask something..."
 					onChange={e => setInput(e.currentTarget.value)}
 				/>
-				<Button type="submit" disabled={input.trim() === ''}>Send</Button>
+				<Button
+					type="submit"
+					disabled={input.trim() === ''}
+					size="icon-lg"
+					variant="default"
+					aria-label="Send"
+					className="disabled:opacity-50"
+				>
+					<SendHorizontal />
+				</Button>
 			</form>
 		</div>
 	);
