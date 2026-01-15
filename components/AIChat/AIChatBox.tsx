@@ -1,5 +1,8 @@
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
+import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
+import AIChatMessage from "./AIChatMessage";
 
 interface AIChatBoxProps {
 	open: boolean;
@@ -15,17 +18,7 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
 	return (
 		<div>
 			{messages.map(message => (
-				<div key={message.id} className="whitespace-pre-wrap">
-					{message.role === 'user' ? 'User: ' : 'AI: '}
-					{message.parts.map((part, i) => {
-						switch (part.type) {
-							case 'text':
-								return <div key={`${message.id}-${i}`}>{part.text}</div>;
-							default:
-								return null;
-						}
-					})}
-				</div>
+				<AIChatMessage key={message.id} message={message} />
 			))}
 
 			<form
@@ -35,12 +28,13 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
 					setInput('');
 				}}
 			>
-				<input
-					className="fixed dark:bg-zinc-900 bottom-0 w-full max-w-md p-2 mb-8 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl"
+				<Textarea
+					className="resize-none"
 					value={input}
-					placeholder="Say something..."
+					placeholder="Ask something..."
 					onChange={e => setInput(e.currentTarget.value)}
 				/>
+				<Button type="submit" disabled={input.trim() === ''}>Send</Button>
 			</form>
 		</div>
 	);
