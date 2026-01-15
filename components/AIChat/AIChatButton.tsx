@@ -1,0 +1,22 @@
+"use client";
+
+import { Bot } from "lucide-react";
+import { Fragment, useState } from "react";
+import { Button } from "../ui/button";
+import AIChatBox from "./AIChatBox";
+
+export default function AIChatButton() {
+	const [chatBoxOpen, setChatBoxOpen] = useState(false);
+
+	return (
+		<Fragment>
+			<Button
+				onClick={() => setChatBoxOpen(!chatBoxOpen)}
+				className="fixed bottom-4 right-4 z-40 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+			>
+				<Bot size={24} className="animate-pulse" />
+			</Button>
+			<AIChatBox open={chatBoxOpen} onClose={() => setChatBoxOpen(false)} />
+		</Fragment>
+	);
+}
