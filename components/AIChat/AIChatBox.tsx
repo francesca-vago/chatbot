@@ -4,6 +4,7 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import AIChatMessage from "./AIChatMessage";
 import { SendHorizontal } from "lucide-react";
+import { PopoverContent } from "../ui/popover";
 
 interface AIChatBoxProps {
 	open: boolean;
@@ -17,7 +18,7 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
 	if (!open) return null;
 
 	return (
-		<div>
+		<PopoverContent>
 			{messages.map(message => (
 				<AIChatMessage key={message.id} message={message} />
 			))}
@@ -47,6 +48,6 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
 					<SendHorizontal />
 				</Button>
 			</form>
-		</div>
+		</PopoverContent>
 	);
 }
