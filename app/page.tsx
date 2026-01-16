@@ -5,7 +5,7 @@ import NavMenu from '@/components/NavMenu/NavMenu';
 
 export default function Chat() {
   return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+    <div className="max-w-md py-4 mx-auto">
       <NavMenu />
       <AIChatButton />
     </div>
